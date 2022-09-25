@@ -1,7 +1,7 @@
 export class Conversao {
 
   constructor(
-    public moeda?: string,
+    public moedaDe?: string,
     public moedaPara?: string,
     public valor?: number,
   ){}

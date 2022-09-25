@@ -1,40 +1,28 @@
 <br />
-<div class="alert alert-danger"
-	role="alert">
-	Erro obtendo dados. Tente novamente.
+<div *ngIf="possuiErro" class="alert alert-danger" role="alert">
+  Erro obtendo dados. Tente novamente.
 </div>
 <div class="panel panel-success">
-	<div class="panel-heading">
-		Selecione a moeda a ser convertida
-	</div>
-	<div class="panel-body text-center">
-	  <form class="form-inline">
-		<input
-			type="text"
-			name="valor"
-			class="form-control text-right"
-			placeholder="0"
-			required>
-		<select
-			name="moedaDe"
-			class="form-control"
-			required>
-			<option>
-			</option>
-		</select>
-		<span class="glyphicon glyphicon-arrow-right"
-			aria-hidden="true"></span>
-		<select
-			name="moedaPara"
-			class="form-control"
-			required>
-			<option>
-			</option>
-		</select>
-		<input
-			type="submit"
-			value="Converter"
-			class="btn btn-success">
-	  </form>
-	 </div>
+  <div class="panel-heading">
+    Selecione a moeda a ser convertida
+  </div>
+  <div class="panel-body text-center">
+    <form class="form-inline" #conversaoForm="ngForm">
+      <input type="text" [(ngModel)]="conversao.valor" name="valor" class="form-control text-right" placeholder="0" required>
+      <select [(ngModel)]="conversao.moedaDe" name="moedaDe" class="form-control" required>
+        <option
+        *ngFor="let moeda of moedas"
+        [value]="moeda.sigla">
+        {{ moeda.sigla }} - {{ moeda.descricao }}
+        </option>
+      </select>
+      <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+      <select [(ngModel)]="conversao.moedaPara" name="moedaPara" class="form-control" required>
+        <option *ngFor="let moeda of moedas" [value]="moeda.sigla">
+          {{ moeda.sigla }} - {{ moeda.descricao }}
+        </option>
+      </select>
+      <input type="submit" (click)="converter()" [disabled]="!conversaoForm.form.valid" value="Converter" class="btn btn-success">
+    </form>
+  </div>
 </div>
