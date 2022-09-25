@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ConversorComponent } from './components';
 import { MoedaService, ConversorService } from "./services";
@@ -13,7 +13,7 @@ import { MoedaService, ConversorService } from "./services";
   ],
   imports: [
     CommonModule,
-    HttpClient
+    HttpClientModule
   ],
   exports: [
     ConversorComponent
